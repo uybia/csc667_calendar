@@ -1,0 +1,16 @@
+<h1>Bianca Marie Uy</h1>
+<!--<p>Find me in app/views/pages/home.html.erb</p> -->
+
+<table width="50%">
+	<tr align="center" style="font-weight: bold">
+		<td> Project Name </td>
+		<td> Description </td>
+		<td> URL </td>
+	<tr>
+		<% PROJECTS.each do |projects, details| %>
+		<td> <%= projects %> </td>
+		<td> <%= details['description'] %> </td>
+		<td> <%= link_to  details['url'] %> </td>
+	</tr>
+	<% end %>
+</table>
