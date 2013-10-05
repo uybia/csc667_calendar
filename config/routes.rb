@@ -1,4 +1,5 @@
 Myapp::Application.routes.draw do
+  get "pages/project_2"
   get "pages/home"
   root to: "pages#home"
 
