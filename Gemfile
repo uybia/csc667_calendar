@@ -56,4 +56,3 @@ end
 gem 'therubyracer'
 gem 'execjs'
 gem 'bootstrap-sass', '~> 2.3.2.1'
-

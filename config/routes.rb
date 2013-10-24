@@ -1,4 +1,5 @@
 Myapp::Application.routes.draw do
+  match '/calendar', to: 'calendar#home', via: 'get'
   get "pages/project_2"
   get "pages/home"
   root to: "pages#home"
