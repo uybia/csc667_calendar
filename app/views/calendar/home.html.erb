@@ -8,7 +8,7 @@
     <input type="text" class="form-control" id="event_description" placeholder="Enter event">
   </div>
   <select id="time" class="form-control">
-    <option selected="selected" value=" ">Select time ..</option>
+    <option selected="selected" value="">Select time ..</option>
     <option value="12 AM">12 AM</option>
     <% for $time in 1 ... 12 %>
       <option value="<%= $time %> AM"> <%= $time %> AM </option>
