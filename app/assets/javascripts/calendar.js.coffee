@@ -105,7 +105,6 @@ select_day = ->
    $('#calendar td:contains("' + current.getDate()+ '")').addClass('current_day')
 
 validate = (doc)->
-   alert "#{$('form #time').val().length}"
    if $('form #time').val().length == 0 or $('form #event_description').val().length == 0
       return false
    else
@@ -115,7 +114,6 @@ validate = (doc)->
 insert_event = (date) ->
    event = $('form #event_description').val()
    time = $('form #time').val()
-   alert "date = #{date}"
    $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <br>#{time}: #{event}")
 
 clear_form = ->
