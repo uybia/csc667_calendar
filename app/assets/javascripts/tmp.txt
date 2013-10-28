@@ -1,0 +1,61 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+current = new Date()
+days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+month =['January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December']
+
+
+ var clear = function () {
+ //function clear(){
+   $(".table tbody").empty();
+ }
+
+ var initialize = function() {
+ //function initialize(){
+   insert_monthyear();
+   //insert_row();
+ }
+
+ var insert_monthyear = function() {
+ //function insert_monthyear() {
+   alert("inside month_year function"); 
+   $("#month").append(month[current.getMonth()]);
+ }
+
+$(document).ready(function() {
+ //clear();
+ //initialize();
+ alert("this is only a test!");
+});
+/*
+function inset_row() {
+ first_day = new Date(current.getFullYear(), current.getMonth(), 1);
+ start = first_day.getDay();
+ $(".table tbody").append("<tr>");
+ for (var count = 1; count <= days_in_month[current.getMonth()]; count++)
+ {
+   alert "in the loop" 
+//if start == 0
+//	$(".table tbody").append("<tr>")
+	//if start = 6
+	//	$(".table tbody").append("</tr">)
+	//	start =0 
+ }
+}
+generate_empty_cell = (num) ->
+ for i in [0 ... num] by 1
+	$(".table tbody").append("<td> </td>")
+*/

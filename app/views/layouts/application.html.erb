@@ -9,6 +9,7 @@
     <%= csrf_meta_tags %>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <%= yield (:head) %>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-static-top">
