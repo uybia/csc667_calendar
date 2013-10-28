@@ -97,7 +97,7 @@ $(document).on('click', '#calendar td', (event) ->
       column = $(this).parent().children().index($(this))
       cell_no = row * 7 + column
       cell = $('tbody tr td:eq('+ cell_no + ')').html()
-      insert_event(cell) unless cell == " " 
+      insert_event(cell) unless cell == " "
    clear_form()
 )
 
@@ -105,6 +105,7 @@ select_day = ->
    $('#calendar td:contains("' + current.getDate()+ '")').addClass('current_day')
 
 validate = (doc)->
+   alert "#{$('form #time').val().length}"
    if $('form #time').val().length == 0 or $('form #event_description').val().length == 0
       return false
    else
@@ -114,7 +115,8 @@ validate = (doc)->
 insert_event = (date) ->
    event = $('form #event_description').val()
    time = $('form #time').val()
-   $('#calendar td:contains("' + date + '")').append("<br/> #{time}: #{event}")
+   alert "date = #{date}"
+   $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <br>#{time}: #{event}")
 
 clear_form = ->
    $('form #time option:first').attr('selected', true)
