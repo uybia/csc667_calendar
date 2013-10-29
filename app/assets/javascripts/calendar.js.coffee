@@ -58,7 +58,7 @@ initialize = ->
 
 insert_monthyear = ->
    $("#month").empty()
-   $("#month").append("<center><strong>#{month[current.getMonth()]} #{current.getFullYear()} </strong></center>")
+   $("#month").append("#{month[current.getMonth()]} #{current.getFullYear()}")
 
 insert_row = ->
    first_day = new Date(current.getFullYear(), current.getMonth(), 1)

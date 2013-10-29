@@ -11,21 +11,13 @@
     <option selected="selected" value="">Select time ..</option>
     <option value="12 AM">12 AM</option>
     <% for $time in 1 ... 12 %>
-      <option value="<%= $time %> AM"> <%= $time %> AM </option>
+    <option value="<%= $time %> AM"> <%= $time %> AM </option>
     <% end %>
     <option value="12 PM">12 PM</option>
     <% for $time in 1 ... 12 %>
-      <option value="<%= $time %> PM"> <%= $time %> PM </option>
+    <option value="<%= $time %> PM"> <%= $time %> PM </option>
     <% end %>
   </select>
-  <!--
-  <input type='time' id='time'></input>
-  <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <button type="submit" class="btn btn-default">Submit</button>
-    </div>
-  </div>
-  -->
 </form>
 
 

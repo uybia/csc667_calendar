@@ -7,6 +7,13 @@
   font-weight: bold;
 }
 
+#month {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  color: #FF4545;
+}
+
 .days {
   text-align: center;
 }
@@ -31,6 +38,8 @@ tbody td {
 .event_cal {
   padding-left: 2px;
   margin-bottom: 5px;
-  background-color: #E7F7FF;
+  background-color: #FFFF9D;
   border-radius: 8px;
+  overflow: hidden;
+  word-wrap: break-word;
 }
