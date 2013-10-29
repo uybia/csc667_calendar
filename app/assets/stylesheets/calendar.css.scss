@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #days_of_week {
+  text-align: center;
   font-weight: bold;
 }
 
@@ -11,11 +12,11 @@
 }
 
 .current_day {
-  background-color: #eee;
+  background-color: #FFCC99;
 }
 
 .highlight {
-  background-color: #BFFF9E;
+  background-color: #ECECE3;
 }
 
 table {
@@ -27,3 +28,9 @@ tbody td {
   overflow: hidden;
 }
 
+.event_cal {
+  padding-left: 2px;
+  margin-bottom: 5px;
+  background-color: #E7F7FF;
+  border-radius: 8px;
+}

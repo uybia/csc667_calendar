@@ -65,24 +65,27 @@ insert_row = ->
    last_day = new Date(current.getFullYear(), current.getMonth()+1, 0)
    start = first_day.getDay()
    last = last_day.getDay()
+   number_of_days = days_in_month[current.getMonth()]
+   if number_of_days == 28 and isLeapYear() is true
+      number_of_days = 29
    row = " "
    count  = 0
-   while (count < days_in_month[current.getMonth()])
+   while (count < number_of_days)
       if count == 0
-         $(".table tbody").append(create_row(count, 7 - start, start))
+         $(".table tbody").append(create_row(count, 7 - start, start, number_of_days))
          count = 0 + (7-start)
-      else if count + 7 < days_in_month[current.getMonth()] 
-         $(".table tbody").append(create_row(count, count + 7, start))
+      else if count + 7 < number_of_days 
+         $(".table tbody").append(create_row(count, count + 7, start, number_of_days))
          count += 7
       else 
-         $(".table tbody").append(create_row(count, days_in_month[current.getMonth()], last))
+         $(".table tbody").append(create_row(count, number_of_days, last, number_of_days))
          break
 
-create_row = (first, last, start) ->
+create_row = (first, last, start, num) ->
    row = "<tr>" 
    row += generate_empty_cell(start) if first == 0 
    row += "<td> #{date + 1} </td>" for date in [first ... last]
-   row += generate_empty_cell(6 - start) if last == days_in_month[current.getMonth()]
+   row += generate_empty_cell(6 - start) if last == num 
    row += "</tr>"
 
 generate_empty_cell = (num)  ->
@@ -109,14 +112,17 @@ validate = (doc)->
       return false
    else
       return true
-    # insert_event($('form #time').val(), $('form #event_description').val(), doc)
 
 insert_event = (date) ->
    event = $('form #event_description').val()
    time = $('form #time').val()
-   $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <br>#{time}: #{event}")
+   $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <div class=\"event_cal\">#{time}: #{event}</div>")
 
 clear_form = ->
    $('form #time option:first').attr('selected', true)
    $('form #event_description').val("")
 
+isLeapYear = ->
+   year = current.getFullYear()
+   if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0 then return true else return false
+   
