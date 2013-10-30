@@ -119,7 +119,7 @@ insert_event = (date) ->
    $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <div class=\"event_cal\">#{time}: #{event}</div>")
 
 clear_form = ->
-   $('form #time option:first').attr('selected', true)
+   $('form #time option:first').prop('selected', 'disabled')
    $('form #event_description').val("")
 
 isLeapYear = ->
