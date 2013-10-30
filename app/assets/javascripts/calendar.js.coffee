@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+starting = new Date()
 current = new Date()
 days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 month =['January',
@@ -50,6 +51,7 @@ create_calendar = ->
       -> $(this).addClass('highlight'),
       -> $(this).removeClass('highlight')
    )
+   select_day() if current.getFullYear() == starting.getFullYear() and current.getMonth() == starting.getMonth()
 
 clear = ->
    $(".table tbody").empty()
@@ -108,7 +110,7 @@ $(document).on('click', '#calendar td', (event) ->
 
 select_day = ->
    $('#calendar td').filter ->
-      return this if parseInt($(this).html()) == current.getDate()
+      return this if parseInt($(this).html()) == starting.getDate()
    .addClass('current_day')
 
 validate = (doc)->
@@ -129,4 +131,4 @@ clear_form = ->
 isLeapYear = ->
    year = current.getFullYear()
    if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0 then return true else return false
-   
+  
