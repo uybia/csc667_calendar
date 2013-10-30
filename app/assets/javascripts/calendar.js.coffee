@@ -105,7 +105,7 @@ $(document).on('click', '#calendar td', (event) ->
       cell_no = row * 7 + column
       cell = $('tbody tr td:eq('+ cell_no + ')').html()
       insert_event this unless cell == " "
-   clear_form()
+      clear_form()
 )
 
 select_day = ->
