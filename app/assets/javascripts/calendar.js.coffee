@@ -19,6 +19,7 @@ month =['January',
 
 $(document).ready ->
    create_calendar()
+   select_day()
 
 $(document).on("click", "#prev_year", ->
    current.setFullYear(current.getFullYear() - 1)
@@ -31,11 +32,13 @@ $(document).on("click", "#next_year", ->
 )
 
 $(document).on("click", "#prev_month", ->
+   current.setDate(1)
    current.setMonth(current.getMonth() - 1)
    create_calendar()
 )
 
 $(document).on("click", "#next_month", ->
+   current.setDate(1)
    current.setMonth(current.getMonth() + 1)
    create_calendar()
 )
@@ -43,7 +46,6 @@ $(document).on("click", "#next_month", ->
 create_calendar = ->
    clear()
    initialize()
-   select_day()
    $('.table tbody td').hover(
       -> $(this).addClass('highlight'),
       -> $(this).removeClass('highlight')
@@ -100,12 +102,14 @@ $(document).on('click', '#calendar td', (event) ->
       column = $(this).parent().children().index($(this))
       cell_no = row * 7 + column
       cell = $('tbody tr td:eq('+ cell_no + ')').html()
-      insert_event(cell) unless cell == " "
+      insert_event this unless cell == " "
    clear_form()
 )
 
 select_day = ->
-   $('#calendar td:contains("' + current.getDate()+ '")').addClass('current_day')
+   $('#calendar td').filter ->
+      return this if parseInt($(this).html()) == current.getDate()
+   .addClass('current_day')
 
 validate = (doc)->
    if $('form #time').val().length == 0 or $('form #event_description').val().length == 0
@@ -113,10 +117,10 @@ validate = (doc)->
    else
       return true
 
-insert_event = (date) ->
+insert_event = (cell) ->
    event = $('form #event_description').val()
    time = $('form #time').val()
-   $('#calendar td:contains("' + date.substring(0,3) + '")').append(" <div class=\"event_cal\">#{time}: #{event}</div>")
+   $(cell).append(" <div class=\"event_cal\">#{time}: #{event}</div>")
 
 clear_form = ->
    $('form #time option:first').prop('selected', 'disabled')
