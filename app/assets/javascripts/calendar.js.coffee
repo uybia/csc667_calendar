@@ -52,6 +52,7 @@ create_calendar = ->
       -> $(this).removeClass('highlight')
    )
    select_day() if current.getFullYear() == starting.getFullYear() and current.getMonth() == starting.getMonth()
+   get_event()
 
 clear = ->
    $(".table tbody").empty()
@@ -88,7 +89,7 @@ insert_row = ->
 create_row = (first, last, start, num) ->
    row = "<tr>" 
    row += generate_empty_cell(start) if first == 0 
-   row += "<td> #{date + 1} </td>" for date in [first ... last]
+   row += "<td data-day=\"#{date+1}\"> #{date + 1} </td>" for date in [first ... last]
    row += generate_empty_cell(6 - start) if last == num 
    row += "</tr>"
 
@@ -120,9 +121,10 @@ validate = (doc)->
       return true
 
 insert_event = (cell) ->
-   event = $('form #event_description').val()
-   time = $('form #time').val()
-   $(cell).append(" <div class=\"event_cal\">#{time}: #{event}</div>")
+   form_event = $('form #event_description').val()
+   form_time = $('form #time').val()
+   $(cell).append(" <div class=\"event_cal\">#{form_time}: #{form_event}</div>")
+   $.post("/appointment", {"appointment": {"event": form_event, "time": form_time, "month": current.getMonth(), "day": $(cell).data('day'), "year": current.getFullYear()}})
 
 clear_form = ->
    $('form #time option:first').prop('selected', 'disabled')
@@ -132,3 +134,9 @@ isLeapYear = ->
    year = current.getFullYear()
    if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0 then return true else return false
   
+get_event = ->
+   $.get("/appointment", {"month": current.getMonth(), "year": current.getFullYear()}, ( (data) -> 
+      $.each(data, (key, value) ->
+         $("td[data-day ='" + value.day + "']").append("<div class=\"event_cal\"> #{value.time} : #{value.event} </div>")
+      )
+   ))

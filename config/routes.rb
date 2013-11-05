@@ -1,8 +1,10 @@
 Myapp::Application.routes.draw do
-  match '/calendar', to: 'calendar#home', via: 'get'
   get "pages/project_2"
   get "pages/home"
   root to: "pages#home"
+  match '/calendar', to: 'calendar#home', via: 'get'
+  match '/appointment', to: 'appointment#index', via: 'get'
+  match '/appointment', to: 'appointment#create', via: 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
